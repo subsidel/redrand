@@ -1,10 +1,15 @@
 #!/bin/bash
 
 function makeRequest {
-    RESPONSE="$(curl -sI https://www.reddit.com/r/random/ | grep location | awk {'print $2'})"
-    echo "${RESPONSE}"
+    RANDOM_SUBREDDIT="$(curl -sI https://www.reddit.com/r/random/ | grep location | awk {'print $2'} | tr -d '\r')"
 }
 
 while true; do
     makeRequest
+    echo "${RANDOM_SUBREDDIT}"
+    echo "Would you like to open this subreddit? (y/n)"
+    read open
+    if [ "$open" == "y" ]; then
+        open "${RANDOM_SUBREDDIT}"
+    fi
 done
