@@ -7,9 +7,11 @@ function makeRequest {
 while true; do
     makeRequest
     echo "${RANDOM_SUBREDDIT}"
-    printf "Would you like to open this subreddit? (y/N) "
+    printf "Would you like to open this subreddit? (y)es, (n)o or (e)xit "
     read open
     if [ "$open" == "y" ]; then
         open "${RANDOM_SUBREDDIT}"
+    elif [ "$open" == "e" ]; then
+        exit
     fi
 done
