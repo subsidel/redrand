@@ -1,0 +1,4 @@
+#!/bin/bash
+
+RESPONSE="$(curl -sI https://www.reddit.com/r/random/ | grep location | awk {'print $2'})"
+echo "${RESPONSE}"
